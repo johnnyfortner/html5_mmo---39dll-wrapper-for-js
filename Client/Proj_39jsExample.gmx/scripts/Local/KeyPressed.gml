@@ -1,0 +1,40 @@
+if(keyboard_check_pressed(vk_left))
+    { 
+    clearbuffer();
+    writebyte(9);
+    writeshort(global.myid);
+    writeshort(x);
+    writeshort(y);
+    writeshort(lastdir);
+    sendinput(global.tcp);
+    }
+if(keyboard_check_pressed(vk_right))
+    {
+    clearbuffer();
+    writebyte(10);
+    writeshort(global.myid);
+    writeshort(x);
+    writeshort(y);
+    writeshort(lastdir);
+    sendinput(global.tcp);
+    }
+if(keyboard_check_pressed(vk_up))
+    { 
+    clearbuffer();
+    writebyte(11);
+    writeshort(global.myid);
+    writeshort(x);
+    writeshort(y);
+    writeshort(lastdir);
+    sendinput(global.tcp);
+    } 
+if(keyboard_check_pressed(vk_down))
+    {
+    clearbuffer();
+    writebyte(12);
+    writeshort(global.myid);
+    writeshort(x);
+    writeshort(y);
+    writeshort(lastdir);
+    sendinput(global.tcp);
+    }
