@@ -267,119 +267,30 @@ io.sockets.on('connection', function(socket) { // basically the tcpaccept functi
 			buffer=data;
 			messageid = readbyte();
 			
-			switch (messageid){
-			case 9: //Left
-				pid = readshort();
-				playerx = readshort();
-				playery = readshort();
-				lastdir = readshort();
-				clearbuffer();
-				writebyte(11);
-				writeshort(pid);
-				writeshort(playerx);
-				writeshort(playery);
-				writeshort(lastdir);
-				update_all_players();
-				break;
+			let byteMap = {
+				'9': 11, // left
+				'10': 12, // right
+				'11': 13, // up
+				'12': 14, // down
+				'13': 15, // left released
+				'14': 16, // right released,
+				'15': 17, // up released
+				'16': 18 // down released
 				
-			case 10: //Right
-				pid = readshort();
-				playerx = readshort();
-				playery = readshort();
-				lastdir = readshort();
-				clearbuffer();
-				writebyte(12);
-				writeshort(pid);
-				writeshort(playerx);
-				writeshort(playery);
-				writeshort(lastdir);
-				update_all_players();
-				break;
-				
-			case 11: //Up
-				pid = readshort();
-				playerx = readshort();
-				playery = readshort();
-				lastdir = readshort();
-				clearbuffer();
-				writebyte(13);
-				writeshort(pid);
-				writeshort(playerx);
-				writeshort(playery);
-				writeshort(lastdir);
-				update_all_players();
-				break;
-				
-			case 12: //Down
-				pid = readshort();
-				playerx = readshort();
-				playery = readshort();
-				lastdir = readshort();
-				clearbuffer();
-				writebyte(14);
-				writeshort(pid);
-				writeshort(playerx);
-				writeshort(playery);
-				writeshort(lastdir);
-				update_all_players();
-				break;
-				
-			case 13: //LeftReleased
-				pid = readshort();
-				playerx = readshort();
-				playery = readshort();
-				lastdir = readshort();
-				clearbuffer();
-				writebyte(15);
-				writeshort(pid);
-				writeshort(playerx);
-				writeshort(playery);
-				writeshort(lastdir);
-				update_all_players();
-				break;
-				
-			case 14: //RightReleased
-				pid = readshort();
-				playerx = readshort();
-				playery = readshort();
-				lastdir = readshort();
-				clearbuffer();
-				writebyte(16);
-				writeshort(pid);
-				writeshort(playerx);
-				writeshort(playery);
-				writeshort(lastdir);
-				update_all_players();
-				break;
-				
-			case 15: //UpReleased
-				pid = readshort();
-				playerx = readshort();
-				playery = readshort();
-				lastdir = readshort();
-				clearbuffer();
-				writebyte(17);
-				writeshort(pid);
-				writeshort(playerx);
-				writeshort(playery);
-				writeshort(lastdir);
-				update_all_players();
-				break;
-				
-			case 16: //DownReleased
-				pid = readshort();
-				playerx = readshort();
-				playery = readshort();
-				lastdir = readshort();
-				clearbuffer();
-				writebyte(18);
-				writeshort(pid);
-				writeshort(playerx);
-				writeshort(playery);
-				writeshort(lastdir);
-				update_all_players();
-				break;
-			}
+			};
+
+			pid = readshort();
+			playerx = readshort();
+			playery = readshort();
+			lastdir = readshort();
+			clearbuffer();
+			writebyte(byteMap[messageid]);
+			writeshort(pid);
+			writeshort(playerx);
+			writeshort(playery);
+			writeshort(lastdir);
+			update_all_players();
+			break;
 		});
 	});
 /*if (global.player) {
