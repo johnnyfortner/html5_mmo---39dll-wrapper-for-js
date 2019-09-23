@@ -29,9 +29,9 @@ io.configure('production', function(){
 });
 
 // create the player array
-var global={};
-global.player = [];
-
+var global = {
+	player: []
+};
 
 app.listen(8080); // open up tcpsocket
 
@@ -52,6 +52,8 @@ io.sockets.on('connection', function(socket) { // basically the tcpaccept functi
 		// we need to send them their official ID
 		
 		global[socket.id] = socket.connection = socket;
+	
+		// NOTE - Setting player_id to the last element of the 
 		var player_id = global.player.length;
 		global.player.push({
 			player_id : player_id,
@@ -78,6 +80,10 @@ io.sockets.on('connection', function(socket) { // basically the tcpaccept functi
 				writeshort(pid);
 				send_all_players();
 				global.player.splice(pid, 1);
+				// NOTE - Deleting the player like this will make you're index mismatch.
+				// IE if you delete player at index 3, the player at index 4 will become player[3] 
+				// but its player_id will still be 4. If it disconnects, you will delete player[4] 
+				// which is actually player_id 5
 			}else{
 				clearbuffer();
 				writebyte(20);
@@ -231,6 +237,7 @@ io.sockets.on('connection', function(socket) { // basically the tcpaccept functi
 				savex = readshort();
 				savey = readshort();
 				global.player.splice(pid, 1);
+					// NOTE - Same issue as above, pid may not equal their index in the player array
 				// ini_write_real(user, "x", savex);
 				// ini_write_real(user, "y", savey);
 				// Now tell everyone they left
