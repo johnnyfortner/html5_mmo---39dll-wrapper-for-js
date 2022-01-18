@@ -3,15 +3,11 @@
 
 only works with supplied node.exe, add to your path environment variable if you wish or use the batch file.
 
-I had intended on making a full mmo with this but the 39js.dll javascript wrapper
-
+I had intended on making a full mmo with this but the 39js.dll javascript wrapper<br/>
 (and game maker extension written as javascript extending game maker for html5 export module) 
+<br/>was incomplete and needs a full rewrite with an updated node. 
 
-was incomplete and needs a full rewrite with an updated node. 
-
-all of the different versions of game maker, extensions, socketio(version 0.8.4), node and coupled with outdated web connections,
-
-makes for a very glitch experience. But the proof of concept is there.
+all of the different versions of game maker, extensions, socketio(version 0.8.4), node and coupled with outdated web connections, makes for a very glitch experience. But the proof of concept is there.
 ## Donation Addresses:
 BTC: `39jKNoXoxtsdiUCFjU2ULV9AH2vHHMxK5P`\
 ETH: `0xa660e3ae6ea3e767dc8cedb38c6eaacdca9c1b3c`\
